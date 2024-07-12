@@ -6,11 +6,11 @@ Portafolio con proyectos personales y un formulario para enviarme mensajes aquel
 
 #### 2. Funcionalidades Clave
 
-    - Envio de mensajes.
-    * Login personal.
-    * Listado y borrado de mensajes.
-    * Listado y edicion de proyectos.
-    + Health al servidor por si estubiera hivernado, gestionar la espera.
+- Envio de mensajes.
+* Login personal.
+* Listado y borrado de mensajes.
+* Listado y edicion de proyectos.
++ Health al servidor por si estubiera hivernado, gestionar la espera.
 
 #### 3. API DESIGN 
 
