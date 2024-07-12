@@ -28,7 +28,11 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 //API Content
-app.use('/',(req,res)=>res.send('nice'))
+app.get('/health', (req,res)=>{
+    res.status(200).json({response:'server alive'})
+});
+
+app.use('/', require('./routes'));
 
 //API Listen
 app.listen(PORT, ()=>{

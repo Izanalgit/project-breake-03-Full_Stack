@@ -16,21 +16,21 @@ Portafolio con proyectos personales y un formulario para enviarme mensajes aquel
 
 - PUBLIC ==public==
     - GET /health
-    * GET /projects
-    + POST /contact {payload: (body)}
+    * GET /public/projects
+    + POST /public/contact {payload: (body)}
 
 * LOG IN ==admin==
     - POST /user/login {payload: (body)}
     + POST /user/logout {payload: (body)}
 
 * MESSAGES ==admin==
-    - GET /dashboard/messages/
-    + DELETE /dashboard/messages/:mesgID {payload: (body)}
+    - GET /messages/
+    + DELETE /messages/:mesgID {payload: (body)}
 
 + PROJECTS ==admin==
-    - POST /dashboard/projects {payload: (body)}
-    * PUT /dashboard/projects/:projectID {payload: (body)}
-    + DELETE /dashboard/projects/:projectID {payload: (body)}
+    - POST /projects {payload: (body)}
+    * PUT /projects/:projectID {payload: (body)}
+    + DELETE /projects/:projectID {payload: (body)}
     
 
 #### 4. DISEÑO DE BASE DE DATOS
