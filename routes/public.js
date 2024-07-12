@@ -1,23 +1,17 @@
 const express = require('express');
+const getProjects = require('../controllers/projects/getProjects');
+const reciveMessage = require('../controllers/messages/reciveMessage');
 
 const routes = express.Router();
 
+routes.get('/health', (req,res)=>{
+    res.status(200).json({response:'server alive'});
+});
+
 //Send projects
-routes.get('/projects',(req,res)=>{
-    res
-        .status(200)
-        .json({projects:'my bests works'})
-})
+routes.get('/projects',getProjects);
 
 //Recive message  
-routes.post('/contact',(req,res)=>{
-    if(!req.body.message) res
-        .status(400)
-        .json({response:'wheres is my message?'});
-    else res
-        .status(200)
-        .json({projects:'still without db logics'});
-
-})
+routes.post('/contact',reciveMessage);
 
 module.exports = routes;

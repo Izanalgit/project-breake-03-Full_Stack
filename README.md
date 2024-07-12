@@ -24,7 +24,7 @@ Portafolio con proyectos personales y un formulario para enviarme mensajes aquel
     + POST /user/logout {payload: (body)}
 
 * MESSAGES ==admin==
-    - GET /messages/
+    - GET /messages
     + DELETE /messages/:mesgID {payload: (body)}
 
 + PROJECTS ==admin==

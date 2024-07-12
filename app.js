@@ -9,7 +9,7 @@ const dbConnect = require('./config/dataBaseConfig');
 //Enviorement
 require('dotenv').config();
 
-//Init API
+//API Init
 const app = express();
 const PORT = process.env.PORT || 8080;
 
@@ -28,10 +28,6 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 //API Content
-app.get('/health', (req,res)=>{
-    res.status(200).json({response:'server alive'})
-});
-
 app.use('/', require('./routes'));
 
 //API Listen
