@@ -40,8 +40,8 @@ Con los siguientes esquemas :
 
 ```javascript
 const userSchema = new mongoose.Schema({
-    name: { type: String, required: true },
-    password: { type: String, required: true },
+    name: { type: String, required: true , unique:true},
+    pswd: { type: String, required: true },
 });
 
 const projectSchema = new mongoose.Schema({
@@ -53,5 +53,5 @@ const projectSchema = new mongoose.Schema({
 const messageSchema = new mongoose.Schema({
     contact: { type: String, required: true },
     message: { type: String, required: true },
-});
+},{timestamps:true});
 ```
