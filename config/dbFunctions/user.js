@@ -7,6 +7,7 @@ async function findUser(userName,password){
         return user;
     }catch (err){
         console.error('DB-FIND USER BY LOG IN ERROR : ',err);
+        return null;
     }
 }
 

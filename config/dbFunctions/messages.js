@@ -7,6 +7,7 @@ async function allMessages(){
         return messages;
     }catch (err){
         console.error('DB-FIND MESSAGES ERROR : ',err);
+        return null;
     }
 }
 
@@ -19,6 +20,7 @@ async function createMessage(contact,message){
         return newMsg;
     }catch (err){
         console.error('DB-CREATE MESSAGE ERROR : ',err);
+        return null;
     }
 }
 
@@ -29,6 +31,7 @@ async function deleteMessage(idMessage){
         return delMsg;
     }catch (err){
         console.error('DB-DELETE MESSAGE BY ID ERROR : ',err);
+        return null;
     }
 }
 

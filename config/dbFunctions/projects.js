@@ -7,6 +7,7 @@ async function allProjects(){
         return projects;
     }catch (err){
         console.error('DB-FIND PROJECTS ERROR : ',err);
+        return null;
     }
 }
 
@@ -18,7 +19,8 @@ async function createProject(name,link,description){
         const newProject = await Project.create(project);
         return newProject;
     }catch (err){
-        console.error('DB-CREATE PROJECT ERROR : ',err);
+        console.error('DB-CREATE PROJECT ERROR', err);
+        return null;
     }
 }
 
@@ -29,6 +31,7 @@ async function updateProject(idProject,project){
         return updtProject;
     }catch (err){
         console.error('DB-UPDATE PROJECT BY ID ERROR : ',err);
+        return null;
     }
 }
 
@@ -39,6 +42,7 @@ async function deleteProject(idProject){
         return delProject;
     }catch (err){
         console.error('DB-DELETE PROJECT BY ID ERROR : ',err);
+        return null;
     }
 }
 
