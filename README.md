@@ -15,7 +15,7 @@ Portafolio con proyectos personales y un formulario para enviarme mensajes aquel
 #### 3. API DESIGN 
 
 - PUBLIC ==public==
-    - GET /health
+    - GET /public/health
     * GET /public/projects
     + POST /public/contact {payload: (body)}
 

@@ -5,7 +5,7 @@ const reciveMessage = require('../controllers/messages/reciveMessage');
 const routes = express.Router();
 
 routes.get('/health', (req,res)=>{
-    res.status(200).json({response:'server alive'});
+    res.status(200).json({message:'server alive'});
 });
 
 //Send projects
