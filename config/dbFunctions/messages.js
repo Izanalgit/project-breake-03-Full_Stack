@@ -6,7 +6,7 @@ async function allMessages(){
         const messages = await Message.find();
         return messages;
     }catch (err){
-        console.error('DB-FIND MESSAGES ERROR : ',err);
+        console.error('DB-FIND MESSAGES ERROR : ',err.errmsg);
         return null;
     }
 }
@@ -19,7 +19,7 @@ async function createMessage(contact,message){
         const newMsg = await Message.create(newMessage);
         return newMsg;
     }catch (err){
-        console.error('DB-CREATE MESSAGE ERROR : ',err);
+        console.error('DB-CREATE MESSAGE ERROR : ',err.errmsg);
         return null;
     }
 }
@@ -30,7 +30,7 @@ async function deleteMessage(idMessage){
         const delMsg = await Message.findByIdAndDelete(idMessage);
         return delMsg;
     }catch (err){
-        console.error('DB-DELETE MESSAGE BY ID ERROR : ',err);
+        console.error('DB-DELETE MESSAGE BY ID ERROR : ',err.errmsg);
         return null;
     }
 }

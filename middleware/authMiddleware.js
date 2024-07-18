@@ -1,5 +1,5 @@
 const jwt = require ('jsonwebtoken');
-const {findUser} = require('./../config/dbFunctions/user');
+const {findUserByID} = require('./../config/dbFunctions/user');
 
 //Secret
 const {createSecret} = require('../config/authConfig');
@@ -46,13 +46,14 @@ function verifyToken(req,res,next){
 //Verify user ID
 async function verifyUser(req,res,next){
     const userId = req.user;
-    const user = await findUser(userId);
+    const user = await findUserByID(userId);
 
     if(!user) 
         return res
             .status(401)
             .json({message:'User not found'})
 
+    req.user = user.name;
     next();
 }
 
