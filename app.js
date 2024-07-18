@@ -5,6 +5,8 @@ const compression = require('compression');
 const swaggerUI = require('swagger-ui-express');
 const morgan = require('morgan');
 
+const docs = require('./docs/index');
+
 const dbConnect = require('./config/dataBaseConfig');
 const {createSession} = require('./middleware/authMiddleware');
 
@@ -31,6 +33,9 @@ app.use(morgan('dev'));
 
 //Session
 app.use(session(createSession()));
+
+//API Documentation
+app.use('/api-docs', swaggerUI.serve,swaggerUI.setup(docs));
 
 //API Content
 app.use('/', require('./routes'));
