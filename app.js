@@ -42,6 +42,8 @@ app.use('/api-docs', swaggerUI.serve,swaggerUI.setup(docs));
 app.use('/', require('./routes'));
 
 //API Listen
-app.listen(PORT, ()=>{
+const server = app.listen(PORT, ()=>{
     console.log(`Server on http://localhost:${PORT}`);
 })
+
+module.exports = {app,server};
