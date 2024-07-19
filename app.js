@@ -5,9 +5,10 @@ const compression = require('compression');
 const swaggerUI = require('swagger-ui-express');
 const morgan = require('morgan');
 
+const dbConnect = require('./config/dataBaseConfig');
+const corsOptions = require('./config/corsConfig');
 const docs = require('./docs/index');
 
-const dbConnect = require('./config/dataBaseConfig');
 const {createSession} = require('./middleware/authMiddleware');
 
 //Enviorement
@@ -21,7 +22,7 @@ const PORT = process.env.PORT || 8080;
 dbConnect();
 
 //Security
-app.use(cors());
+app.use(cors(corsOptions));
 
 //Data
 app.use(compression());
