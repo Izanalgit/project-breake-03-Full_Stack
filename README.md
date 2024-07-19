@@ -31,9 +31,18 @@ Portafolio con proyectos personales y un formulario para enviarme mensajes aquel
     - POST /projects {payload: (body)}
     * PUT /projects/:projectID {payload: (body)}
     + DELETE /projects/:projectID {payload: (body)}
-    
 
-#### 4. DISEÑO DE BASE DE DATOS
+#### 4. VARIABLES DE ENTORNO
+
++ PORT -> Puerto donde levantar la API
+* MONGO_URI -> URI base de datos
+* MONGO_BBDD -> Nombre base de datos
+* DB_TEST_URI -> URI base de datos de prueba
+* DB_TEST_PROJ -> Nombre de la base de datos de prueba para proyectos
+* DB_TEST_MESG -> Nombre de la base de datos de prueba para mensages
++ CLIENT_URL -> URL del cliente para las politicas CORS
+
+#### 5. DISEÑO DE BASE DE DATOS
 
 Dada la naturaleza documental de los datos almacenados, uso mongo como bbdd.
 Con los siguientes esquemas :
