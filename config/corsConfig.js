@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const clientURL = process.env.CLIENT_URL || 'http://locahost';
+const clientURL = process.env.CLIENT_URL || 'http://localhost:5173';
 
 const corsOptions = {
     origin: clientURL,

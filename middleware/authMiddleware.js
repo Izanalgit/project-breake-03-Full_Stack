@@ -8,9 +8,11 @@ const hashSc = createSecret();
 //Session config
 const createSession = () => {
     return {
+        name:"user",
         secret: hashSc,
-        resave: false,
         saveUninitialized: true,
+        resave: false,
+        proxy: true,
     }
 }
 
@@ -23,12 +25,13 @@ function genToken(user){
 
 //Request Token
 function verifyToken(req,res,next){
+
     const token = req.body.authToken;
-    const sesToken = req.session.token;
+    // const sesToken = req.session.token; //SESSSION
 
     if(!token)return res.status(401).json({message:'Token missing'});
-    if(!sesToken)return res.status(401).json({message:'Not logued'});
-    if(token != sesToken)return res.status(401).json({message:'Invalid session'});
+    // if(!sesToken)return res.status(402).json({message:'Not logued'}); //SESSSION
+    // if(token != sesToken)return res.status(401).json({message:'Invalid session'}); //SESSION
 
     jwt.verify(token,hashSc,(err,decoded)=>{
         if(err){

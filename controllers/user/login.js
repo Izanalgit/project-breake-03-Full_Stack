@@ -25,11 +25,11 @@ module.exports = async (req,res) => {
             .status(400)
             .json({message:payErrMsg});
 
-    // Check if session allready exists
-    if(req.session.token) 
-        return res
-            .status(409)
-            .json({message:sesErrMsg}) 
+    // // Check if session allready exists
+    // if(req.session.token) 
+    //     return res
+    //         .status(409)
+    //         .json({message:sesErrMsg}) 
 
     
     //User check
@@ -43,7 +43,7 @@ module.exports = async (req,res) => {
     
     //Generate session token
     const token = genToken(user._id);
-    req.session.token = token;
+    // req.session.token = token; //SESSION
 
     console.log('SESSION UPDATED - LOGIN : ',user.name);
 
