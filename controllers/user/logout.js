@@ -10,10 +10,10 @@ module.exports = async (req,res) => {
     const payload = req.body.payload;
 
     //No session
-    // if(req.session.token == null)
-    //     return res
-    //         .status(400)
-    //         .json({message:sesErrMsg});
+    if(req.session.token == null)
+        return res
+            .status(400)
+            .json({message:sesErrMsg});
 
     //No payload
     if(!payload)
@@ -37,7 +37,7 @@ module.exports = async (req,res) => {
 
     
     //Delete session token
-    // req.session.destroy();
+    req.session.destroy();
 
     console.log('SESSION UPDATED - LOGOUT : ', name);
 

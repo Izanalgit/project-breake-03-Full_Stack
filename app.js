@@ -1,5 +1,5 @@
 const express = require('express');
-// const session = require('express-session');
+const session = require('express-session');
 const cors = require('cors');
 const compression = require('compression');
 const swaggerUI = require('swagger-ui-express');
@@ -33,7 +33,7 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 //Session
-// app.use(session(createSession()));
+app.use(session(createSession()));
 
 //API Documentation
 app.use('/api-docs', swaggerUI.serve,swaggerUI.setup(docs));

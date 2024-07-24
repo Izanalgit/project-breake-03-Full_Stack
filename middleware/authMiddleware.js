@@ -27,11 +27,11 @@ function genToken(user){
 function verifyToken(req,res,next){
 
     const token = req.body.authToken;
-    // const sesToken = req.session.token; //SESSSION
+    const sesToken = req.session.token;
 
     if(!token)return res.status(401).json({message:'Token missing'});
-    // if(!sesToken)return res.status(402).json({message:'Not logued'}); //SESSSION
-    // if(token != sesToken)return res.status(401).json({message:'Invalid session'}); //SESSION
+    if(!sesToken)return res.status(402).json({message:'Not logued'});
+    if(token != sesToken)return res.status(401).json({message:'Invalid session'}); 
 
     jwt.verify(token,hashSc,(err,decoded)=>{
         if(err){
