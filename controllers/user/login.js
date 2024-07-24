@@ -1,11 +1,13 @@
 const {genToken} = require('../../middleware/authMiddleware');
 const {findUser} = require('../../config/dbFunctions/user');
+const {saveToken,findToken} = require('../../config/dbFunctions/tokens');
 
 // Error messages
 const payNullMsg = 'Payload is required';
 const payErrMsg = 'Incorrect login payload , required : {name,pswd}';
 const sesErrMsg = 'Already loged';
 const bdErrMsg = 'Incorrect user credentials';
+const apiErrMsg = 'Server token error';
 
 module.exports = async (req,res) => {
 
@@ -25,15 +27,8 @@ module.exports = async (req,res) => {
             .status(400)
             .json({message:payErrMsg});
 
-    // // Check if session allready exists
-    // if(req.session.token) 
-    //     return res
-    //         .status(409)
-    //         .json({message:sesErrMsg}) 
-
-    
+        
     //User check
-
     const user = await findUser(name,pswd);
     if(!user)
         return res
@@ -41,9 +36,19 @@ module.exports = async (req,res) => {
             .json({message:bdErrMsg});
 
     
-    //Generate session token
+    //Check if there is a token allready from the user
+    const tokenSaved = await findToken (user._id);
+    if(tokenSaved) 
+        return res
+            .status(409)
+            .json({message:sesErrMsg});
+    
+    //Generate token
     const token = genToken(user._id);
-    // req.session.token = token; //SESSION
+    const tokenDB = await saveToken(user._id,token);
+    if(!tokenDB) return res
+            .status(500)
+            .json({message:apiErrMsg}); 
 
     console.log('SESSION UPDATED - LOGIN : ',user.name);
 

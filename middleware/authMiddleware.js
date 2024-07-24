@@ -1,20 +1,10 @@
 const jwt = require ('jsonwebtoken');
 const {findUserByID} = require('./../config/dbFunctions/user');
+const {findToken} = require('./../config/dbFunctions/tokens');
 
 //Secret
 const {createSecret} = require('../config/authConfig');
 const hashSc = createSecret();
-
-//Session config
-const createSession = () => {
-    return {
-        name:"user",
-        secret: hashSc,
-        saveUninitialized: true,
-        resave: false,
-        proxy: true,
-    }
-}
 
 //Token generator
 function genToken(user){
@@ -24,21 +14,23 @@ function genToken(user){
 //Middlewares
 
 //Request Token
-function verifyToken(req,res,next){
+async function verifyToken(req,res,next){
 
     const token = req.body.authToken;
-    // const sesToken = req.session.token; //SESSSION
 
     if(!token)return res.status(401).json({message:'Token missing'});
-    // if(!sesToken)return res.status(402).json({message:'Not logued'}); //SESSSION
-    // if(token != sesToken)return res.status(401).json({message:'Invalid session'}); //SESSION
 
-    jwt.verify(token,hashSc,(err,decoded)=>{
+    jwt.verify(token,hashSc,async (err,decoded)=>{
         if(err){
             return res
                 .status(401)
                 .json({message:'Invalid Token', error: err.message});
         }
+
+        const sesToken = await findToken(decoded.user);
+
+        if(!sesToken)return res.status(402).json({message:'Not logued'});
+        if(token != sesToken.token)return res.status(401).json({message:'Invalid session'});
 
         req.user = decoded.user;
 
@@ -57,12 +49,12 @@ async function verifyUser(req,res,next){
             .json({message:'User not found'})
 
     req.user = user.name;
+    req.userId = userId;
     next();
 }
 
 
-module.exports = {
-    createSession, 
+module.exports = { 
     genToken, 
     verifyToken,
     verifyUser,
