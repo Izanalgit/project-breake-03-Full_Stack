@@ -7,8 +7,8 @@ const projectValidations = [
         .withMessage('El nombre debe ser alphanumerico')
         .isLength({ min: 3})
 		.withMessage('El nombre debe ser de almenos 3 carácteres')
-        .isLength({ max: 15})
-		.withMessage('El nombre no debe superar los 15 carácteres'),
+        .isLength({ max: 50})
+		.withMessage('El nombre no debe superar los 50 carácteres'),
     body('payload.link')
         .trim()
         .isURL() 

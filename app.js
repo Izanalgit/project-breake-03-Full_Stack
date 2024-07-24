@@ -6,6 +6,7 @@ const morgan = require('morgan');
 
 const dbConnect = require('./config/dataBaseConfig');
 const corsOptions = require('./config/corsConfig');
+const {initTokens} = require('./config/dbFunctions/tokens');
 const docs = require('./docs/index');
 
 //Enviorement
@@ -17,6 +18,9 @@ const PORT = process.env.PORT || 8080;
 
 //DB Connection
 dbConnect();
+
+//Prevent previuos token secrets
+initTokens();
 
 //Security
 app.use(cors(corsOptions));

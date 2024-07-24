@@ -33,4 +33,15 @@ async function cleanToken(userId){
     }
 }
 
-module.exports = {findToken,saveToken,cleanToken};
+//Init session tokens
+async function initTokens(){
+    try{
+        const authToken = await Token.deleteMany();
+        return authToken;
+    }catch (err){
+        console.error('DB-INIT SESSION TOKENS ERROR : ', err.errmsg);
+        return null;
+    }
+}
+
+module.exports = {findToken,saveToken,cleanToken,initTokens};
