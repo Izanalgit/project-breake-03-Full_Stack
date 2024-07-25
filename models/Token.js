@@ -11,6 +11,11 @@ const tokenSchema = new mongoose.Schema({
         require: [true, 'Token is required'],
         unique:true
     },
+    createdAt: { 
+        type: Date, 
+        expires: 3600, 
+        default: Date.now 
+    }
 })
 
 const Token = mongoose.model('token',tokenSchema);
