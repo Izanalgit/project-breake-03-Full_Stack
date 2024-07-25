@@ -23,7 +23,7 @@ dbConnect();
 initTokens();
 
 //Security
-app.use(cors(corsOptions));
+app.use(cors());
 
 //Data
 app.use(compression());
