@@ -11,8 +11,8 @@ const projectValidations = [
 		.withMessage('El nombre no debe superar los 50 carácteres'),
     body('payload.link')
         .trim()
-        .isURL() 
-        .withMessage('El enlace debe ser valido'),
+        .notEmpty()
+        .withMessage('Se requiere de un enlace a los repositorios o la APP'),
     body('payload.description')
         .trim()
         .isLength({ min: 10})
