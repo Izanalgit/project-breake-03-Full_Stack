@@ -39,14 +39,6 @@ app.use('/api-docs', swaggerUI.serve,swaggerUI.setup(docs));
 //API Content
 app.use('/', require('./routes'));
 
-//Catch-all routes, for one file react client
-app.get("/*", function (req, res) {
-    res.sendFile(path.join(__dirname, "dist/index.html"), function (err) {
-        if (err) res.status(500).send(err);
-    });
-});
-  
-
 //API Listen
 const server = app.listen(PORT, ()=>{
     console.log(`Server on http://localhost:${PORT}`);
